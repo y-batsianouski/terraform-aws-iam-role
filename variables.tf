@@ -60,12 +60,12 @@ variable "inline_policies" {
 }
 
 variable "policies" {
-  description = "List of maps to create additional IAM policies and attach to the IAM role. [ {name_suffix = \"\", description = \"\", path = \"/\", policy = \"\" }, ]"
+  description = "List of maps to create additional IAM policies and attach to the IAM role. [ {name_suffix = \"\", description = \"\", path = \"/\", policy_document = \"\" }, ]"
   type        = list(map(string))
   default     = []
 }
 
-variable "policies_attachements" {
+variable "attached_policies" {
   description = "List of existed IAM policy ARNs to attach to the IAM role"
   type        = list(string)
   default     = []

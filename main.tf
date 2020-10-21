@@ -47,10 +47,10 @@ resource "aws_iam_role_policy_attachment" "this" {
 }
 
 resource "aws_iam_role_policy_attachment" "external" {
-  count = length(var.policies_attachements)
+  count = length(var.attached_policies)
 
   role       = aws_iam_role.this.name
-  policy_arn = var.policies_attachements[count.index]
+  policy_arn = var.attached_policies[count.index]
 }
 
 resource "aws_iam_instance_profile" "this" {
