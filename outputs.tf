@@ -1,6 +1,6 @@
 output "iam_role" {
   description = "Created IAM role"
-  value       = { for k, v in aws_iam_role.this : k => v if contains(["tags"], k) == false }
+  value       = { for k, v in concat(aws_iam_role.this, [{}])[0] : k => v if contains(["tags"], k) == false }
 }
 
 output "inline_policies" {

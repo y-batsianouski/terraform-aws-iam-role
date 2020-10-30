@@ -1,3 +1,9 @@
+variable "create" {
+  description = "Create any resources or not"
+  type        = bool
+  default     = true
+}
+
 variable "name" {
   description = "IAM role name"
   type        = string

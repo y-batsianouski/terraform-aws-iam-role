@@ -3,6 +3,8 @@ locals {
 }
 
 resource "aws_iam_role" "this" {
+  count = var.create ? 1 : 0
+
   name        = var.name
   description = local.description
   path        = var.path
@@ -17,15 +19,15 @@ resource "aws_iam_role" "this" {
 }
 
 resource "aws_iam_role_policy" "inline" {
-  count = length(var.inline_policies)
+  count = var.create ? length(var.inline_policies) : 0
 
   name   = lookup(var.inline_policies[count.index], "name", null)
-  role   = aws_iam_role.this.id
+  role   = aws_iam_role.this[0].id
   policy = var.inline_policies[count.index]["policy"]
 }
 
 resource "aws_iam_policy" "this" {
-  count = length(var.policies)
+  count = var.create ? length(var.policies) : 0
 
   name = format(
     "%s%s%s",
@@ -40,21 +42,21 @@ resource "aws_iam_policy" "this" {
 }
 
 resource "aws_iam_role_policy_attachment" "this" {
-  count = length(var.policies)
+  count = var.create ? length(var.policies) : 0
 
-  role       = aws_iam_role.this.name
+  role       = aws_iam_role.this[0].name
   policy_arn = aws_iam_policy.this[count.index].arn
 }
 
 resource "aws_iam_role_policy_attachment" "external" {
-  count = length(var.attached_policies)
+  count = var.create ? length(var.attached_policies) : 0
 
-  role       = aws_iam_role.this.name
+  role       = aws_iam_role.this[0].name
   policy_arn = var.attached_policies[count.index]
 }
 
 resource "aws_iam_instance_profile" "this" {
-  count = var.create_instance_profile ? 1 : 0
+  count = var.create && var.create_instance_profile ? 1 : 0
   name  = var.name
-  role  = aws_iam_role.this.name
+  role  = aws_iam_role.this[0].name
 }
