@@ -38,7 +38,7 @@ resource "aws_iam_policy" "this" {
   path        = lookup(var.policies[count.index], "path", "/")
   description = lookup(var.policies[count.index], "description", "")
 
-  policy = var.policies[count.index]["policy"]
+  policy = var.policies[count.index]["policy_document"]
 }
 
 resource "aws_iam_role_policy_attachment" "this" {
