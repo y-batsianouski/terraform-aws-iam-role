@@ -15,3 +15,7 @@
 ## 0.3.1
 
 - Fix policy_document for created policy
+
+## 0.3.2
+
+- Add possibility to define name for created IAM policies

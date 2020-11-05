@@ -29,7 +29,7 @@ resource "aws_iam_role_policy" "inline" {
 resource "aws_iam_policy" "this" {
   count = var.create ? length(var.policies) : 0
 
-  name = format(
+  name = lookup(var.policies[count.index], "name", "") != "" ? lookup(var.policies[count.index], "name", "") : format(
     "%s%s%s",
     var.name,
     lookup(var.policies[count.index], "name_suffix", "") == "" ? "" : "-",
