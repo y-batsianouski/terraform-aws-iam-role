@@ -89,6 +89,12 @@ variable "instance_profile_name" {
   default     = ""
 }
 
+variable "instance_profile_path" {
+  description = "Override instance profile path. var.path is used by default"
+  type        = string
+  default     = ""
+}
+
 variable "tags" {
   description = "Tags to add to the IAM role"
   type        = map(string)

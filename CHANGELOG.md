@@ -24,3 +24,8 @@
 
 - Rename variable create_instance_profile to instance_profile_create
 - Add possibility to override ian instance profile name using instance_profile_name variable
+
+## 0.5.0
+
+- Set instance_profile path same as iam role path
+- Add instance_profile_path variable
