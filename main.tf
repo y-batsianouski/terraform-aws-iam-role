@@ -56,7 +56,7 @@ resource "aws_iam_role_policy_attachment" "external" {
 }
 
 resource "aws_iam_instance_profile" "this" {
-  count = var.create && var.create_instance_profile ? 1 : 0
-  name  = var.name
+  count = var.create && var.instance_profile_create ? 1 : 0
+  name  = var.instance_profile_name != "" ? var.instance_profile_name : var.name
   role  = aws_iam_role.this[0].name
 }

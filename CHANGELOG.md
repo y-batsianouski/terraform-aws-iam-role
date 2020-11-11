@@ -19,3 +19,8 @@
 ## 0.3.2
 
 - Add possibility to define name for created IAM policies
+
+## 0.4.0
+
+- Rename variable create_instance_profile to instance_profile_create
+- Add possibility to override ian instance profile name using instance_profile_name variable

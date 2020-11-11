@@ -77,10 +77,16 @@ variable "attached_policies" {
   default     = []
 }
 
-variable "create_instance_profile" {
+variable "instance_profile_create" {
   description = "Create IAM instance profile for the IAM role"
   type        = bool
   default     = false
+}
+
+variable "instance_profile_name" {
+  description = "Override instance profile name. var.name is used by default"
+  type        = string
+  default     = ""
 }
 
 variable "tags" {
